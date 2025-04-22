@@ -54,5 +54,7 @@ if ver in [0, 3] and pkg.check():
     print(f"{'Updat' if ver else 'Install'}ing discord {rel}...")
     pkg.install()
     print(f"{'Update' if ver else 'Install'} complete!")
+else:
+    print("Update was not needed.")
 
 remove(f"discord-{rel}.deb")

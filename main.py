@@ -1,8 +1,11 @@
+# pylint: disable=redefined-builtin,missing-module-docstring
 from sys import exit, argv
 from os import remove, system
 from apt.cache import Cache
 from apt.debfile import DebPackage
 from requests import get
+
+# pylint: enable=redefined-builtin
 
 rel = "stable"
 url = "https://discord.com/api/download?platform=linux&format=deb"
@@ -23,7 +26,7 @@ if len(argv) == 2:
 elif len(argv) > 2:
     exit("Too many arguments, expected 0-1 arguments")
 
-resp = get(url, stream=True)
+resp = get(url, stream=True, timeout=60)
 
 system("clear")
 

@@ -40,6 +40,7 @@ with open(f"discord-{rel}.deb", mode="wb") as file:
     for chunk in resp.iter_content(chunk_size=chunkSize):
         file.write(chunk)
         downloaded += chunkSize
+        downloaded = min(downloaded, fileSize)
         percent = round((downloaded / fileSize) * 100, 2)
         print(
             f"\x1b[HDownloading {resp.headers['Content-length']} byte file: discord-{rel}.deb\n{downloaded}/{fileSize} bytes downloaded ({percent}%)"

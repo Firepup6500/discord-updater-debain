@@ -47,7 +47,12 @@ with open(f"discord-{rel}.deb", mode="wb") as file:
         )
 
 cache = Cache()
-cache.update()
+try:
+    cache.update()
+    # pylint: disable=broad-exception-caught
+    # ^^^ why the fuck does this go here???
+except Exception as E:
+    print(f"WARN: {E}")  # We don't really care if the cache fails :P
 cache.open()
 
 pkg = DebPackage(f"discord-{rel}.deb", cache)
